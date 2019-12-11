@@ -61,6 +61,7 @@ public class IslandController {
             QueryResponse response = client.query("island_core", query);
             highlighting = response.getHighlighting();
             SolrDocumentList results = response.getResults();
+            long sum = results.getNumFound();
             if (!results.isEmpty()) {
                 Gson gson = new Gson();
                 String s = gson.toJson(results);
@@ -69,6 +70,8 @@ public class IslandController {
             } else {
                 list = new ArrayList<>();
             }
+            result.put("sum", sum);
+            result.put("page", page);
             result.put("docs", list);
             result.put("highlight", highlighting);
         } catch (SolrServerException | IOException e) {
