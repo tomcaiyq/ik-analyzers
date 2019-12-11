@@ -1,0 +1,7 @@
+server:
+  port: 8123
+
+spring:
+  data:
+    solr:
+      host: http://localhost:8983/solr
